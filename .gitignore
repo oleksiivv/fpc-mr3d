@@ -63,6 +63,7 @@ sysinfo.txt
 *.zip
 
 user.keystore
+*.keystore
 
 # Crashlytics generated file
 crashlytics-build.properties
