@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Moe Baker/Advanced Rigidbody FirstPerson Controller/Scripts/Menu.unity
+    guid: 04ec8e0430e851642a0a184e86a19058
+  - enabled: 0
+    path: Assets/testNewLight.unity
+    guid: fdfde774287e50c4a96b523a05c2e838
+  - enabled: 1
+    path: Assets/Handpainted Forest Environment Free Sample/Scenes/demoScene_free.unity
+    guid: 7769f33fb4fa2e5458344a36556ad760
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/preInd.unity
+    guid: 324463de0e4bd0e41b9de34f8270b56f
+  - enabled: 0
+    path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/SciFi_Industrial/SampleScenes/SciFi_Industrial_Sample.unity
+    guid: 4b87d61db44e05b47be85249ab606872
+  - enabled: 0
+    path: Assets/Moe Baker/Advanced Rigidbody FirstPerson Controller/Scripts/lastroom.unity
+    guid: 93c73a0f1a1b84641b5b6175f095ec60
+  - enabled: 0
+    path: Assets/Moe Baker/Advanced Rigidbody FirstPerson Controller/Scripts/wild.unity
+    guid: 1b5fb453405271742bcf19667bd301b7
+  - enabled: 1
+    path: Assets/Part2/Final.unity
+    guid: 9ca9bbecc49eec54184471dc1c1e98e5
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/INFO.unity
+    guid: b882f5a612456214baffc7063162f691
+  - enabled: 1
+    path: Assets/settings.unity
+    guid: c4cb4f38852b9574e8f6db2b39ae27b1
+  - enabled: 1
+    path: Assets/shop.unity
+    guid: 7566608b75ff5dc48ba397b11b3e3494
+  - enabled: 0
+    path: Assets/rait.unity
+    guid: 9263f451500f7ce43919489307d2fee4
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/RealShop.unity
+    guid: bee855a867b495c4995135e74e4d2d9f
+  m_configObjects: {}
