@@ -36,8 +36,9 @@ public class kill : MonoBehaviour
             o.transform.position += new Vector3(0, o.transform.localScale.y/2, 0);
             o.transform.rotation = new Quaternion(180, 0, 0, 0);
             o.GetComponent<AudioSource>().Play();
-            o.GetComponent<spidersbehavior>().enabled = false;
-            o.GetComponent<Animation>().enabled = false;
+
+            o.GetComponent<spidersbehavior>().Die();
+            
             //StartCoroutine(dieObj(o.gameObject));
             o.tag = "killed";
         }

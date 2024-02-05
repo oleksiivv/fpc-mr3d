@@ -9,7 +9,7 @@ public class behINFO : MonoBehaviour
     public GameObject toMute,load;
 
 #if UNITY_IOS
-    string gameId = "3507081";
+    string gameId = "3507083";
 #else
     string gameId = "3507082";
 #endif
@@ -22,10 +22,8 @@ public class behINFO : MonoBehaviour
         Advertisement.Initialize(gameId, false);
 
         if(PlayerPrefs.GetInt("noads")!=1){
-            if(Advertisement.IsReady("video")){
+            if(! admob.showIntersitionalAd()){
                 Advertisement.Show("video");
-            }else{
-                admob.showIntersitionalAd();
             }
         }
         //_l.transform.Rotate(-90,0,0);

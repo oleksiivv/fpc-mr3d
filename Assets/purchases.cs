@@ -12,15 +12,19 @@ public class purchases : MonoBehaviour
     public GameObject map;
     public GameObject food_, barels;
     public Text money;
-    string gameId = "3507082";
+    string gameId = "3507083";
 
 
     int barelsNum = 40;
     int foodNum = 26;
 
+    public WatchAdsForMoney watchAdsForMoney;
+
     void Awake()
     {
         Advertisement.Initialize(gameId, false);
+
+        //PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") +100000);// >= 330
     }
     void Start()
     {
@@ -154,12 +158,13 @@ public class purchases : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("armor20") != 1)
         {
-            if (PlayerPrefs.GetInt("money") >= 1000)
+            if (PlayerPrefs.GetInt("money") >= 60)
             {
                 PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 30);
-                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 1000);
+                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 60);
                 PlayerPrefs.SetInt("armor20", 1);
                 buyTune();
+                CompleteArmorQuests();
             }
             else
             {
@@ -176,12 +181,13 @@ public class purchases : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("armor40") != 1)
         {
-            if (PlayerPrefs.GetInt("money") >= 1500)
+            if (PlayerPrefs.GetInt("money") >= 200)
             {
                 PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 50);
-                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 1500);
+                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 200);
                 PlayerPrefs.SetInt("armor40", 1);
                 buyTune();
+                CompleteArmorQuests();
             }
             else
             {
@@ -198,12 +204,13 @@ public class purchases : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("armor60") != 1)
         {
-            if (PlayerPrefs.GetInt("money") >= 2500)
+            if (PlayerPrefs.GetInt("money") >= 500)
             {
                 PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 100);
-                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 2500);
+                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 500);
                 PlayerPrefs.SetInt("armor60", 1);
                 buyTune();
+                CompleteArmorQuests();
             }
             else
             {
@@ -216,6 +223,26 @@ public class purchases : MonoBehaviour
         }
     }
 
+    void CompleteArmorQuests(){
+        var code = ExtraQuests.BUY_ARMOR_IN_SHOP;
+
+        PlayerPrefs.SetInt("Quest_Completed_"+code, 1);
+        PlayerPrefs.SetString(
+            "completed_quests_alerts_queue",
+            PlayerPrefs.GetString("completed_quests_alerts_queue") +code+ ":"
+        );
+    }
+
+    void CompleteBulletsQuests(){
+        var code = MainQuests.FIND_BULLETS;
+
+        PlayerPrefs.SetInt("Quest_Completed_"+code, 1);
+        PlayerPrefs.SetString(
+            "completed_quests_alerts_queue",
+            PlayerPrefs.GetString("completed_quests_alerts_queue") +code+ ":"
+        );
+    }
+
 
     public void buyPatrons()
     {
@@ -226,6 +253,8 @@ public class purchases : MonoBehaviour
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 800);
             PlayerPrefs.SetInt("patron", PlayerPrefs.GetInt("patron") + 10);
             buyTune();
+
+            CompleteBulletsQuests();
         }
 
     }
@@ -236,6 +265,7 @@ public class purchases : MonoBehaviour
 
 
 
+    /*
     void AdCallbackHandler(ShowResult res)
     {
         if (res == ShowResult.Finished)
@@ -251,14 +281,20 @@ public class purchases : MonoBehaviour
             Debug.Log("error");
         }
     }
+    */
+
     public void addMoney()
     {
-        ShowOptions options = new ShowOptions();
-        options.resultCallback = AdCallbackHandler;
-        if (Advertisement.IsReady("rewardedVideo"))
-        {
-            Advertisement.Show("rewardedVideo", options);
-        }
+        // ShowOptions options = new ShowOptions();
+        // options.resultCallback = AdCallbackHandler;
+        // if (Advertisement.IsReady("rewardedVideo"))
+        // {
+        //     Advertisement.Show("rewardedVideo", options);
+        // }
+
+        watchAdsForMoney.showAdsForMoney();
+        //Advertisement.Show("video");
+        //PlayerPrefs.SetInt("money",PlayerPrefs.GetInt("money")+30);
     }
 
     

@@ -24,7 +24,7 @@ public class functional : MonoBehaviour
     static int pl = 0;
 
 #if UNITY_IOS
-    string gameId = "3507081";
+    string gameId = "3507083";
 #else
     string gameId = "3507082";
 #endif
@@ -90,12 +90,12 @@ public class functional : MonoBehaviour
         if (PlayerPrefs.GetInt("Record")!=0)
         {
             GameObject.Find("PlayerRecord2").gameObject.SetActive(true);
-            GameObject.Find("RescueTime").gameObject.SetActive(true);
-            GameObject.Find("days.").gameObject.SetActive(true);
+            //GameObject.Find("RescueTime").gameObject.SetActive(false);
+            //GameObject.Find("days.").gameObject.SetActive(false);
 
-            GameObject.Find("PlayerRecord2").GetComponent<Text>().text = Convert.ToString(PlayerPrefs.GetInt("Record"));
-            GameObject.Find("RescueTime").GetComponent<Text>().text = "Rescue time: ";
-            GameObject.Find("days.").GetComponent<Text>().text = "hours.";
+            GameObject.Find("PlayerRecord2").GetComponent<Text>().text = "Rescue time: " + Convert.ToString(PlayerPrefs.GetInt("Record")) + " hours";
+            //GameObject.Find("RescueTime").GetComponent<Text>().text = "Rescue time: ";
+            //GameObject.Find("days.").GetComponent<Text>().text = "hours.";
         }
         else 
         {
@@ -114,8 +114,6 @@ public class functional : MonoBehaviour
         else{
             likePanel.SetActive(false);
         }
-
-        if(PlayerPrefs.GetInt("noads")!=1)admob.RequestBannerAd();
 
         if(PlayerPrefs.GetInt("noads")==1){
             noadsBtn.SetActive(false);
@@ -249,12 +247,16 @@ public class functional : MonoBehaviour
 
     public void addMoney()
     {
-        ShowOptions options = new ShowOptions();
-        options.resultCallback = AdCallbackHandler;
-        if (Advertisement.IsReady("rewardedVideo"))
-        {
-            Advertisement.Show("rewardedVideo",options);
-        }
+        //ShowOptions options = new ShowOptions();
+        //options.resultCallback = AdCallbackHandler;
+        //if (Advertisement.IsReady("rewardedVideo"))
+        //{
+            if(! admob.showIntersitionalAd()){
+                Advertisement.Show("video");
+            }
+
+            PlayerPrefs.SetInt("money",PlayerPrefs.GetInt("money")+30);
+        //}
     }
 
     public void raiting()

@@ -20,6 +20,9 @@ public class walls : MonoBehaviour {
     public AnimationCurve skyCurve;
     int skyDayId;
     int skyNightId;
+
+    public QuestsPanelController quests;
+
     void Start()
     {
         skyDayId=UnityEngine.Random.Range(0,skyDay.Length);
@@ -51,7 +54,7 @@ public class walls : MonoBehaviour {
     float time=0f;
 	// Update is called once per frame
 	void Update () {
-        print(tm);
+//        print(tm);
         time+=Time.deltaTime/30f;
         if(time>=1)time-=1;
         tm += 1*Convert.ToInt16(Time.timeScale);
@@ -101,6 +104,10 @@ public class walls : MonoBehaviour {
         if (Input.GetKey(KeyCode.I)) { PlayerPrefs.SetInt("d",Convert.ToInt32(day)); PlayerPrefs.SetInt("dr",100); }
         
         txt.text = Convert.ToString(Convert.ToInt16(day));
+
+        if(day>=24){
+            quests.CompleteQuest(BasicQuests.SURVIVE_OVER_NIGHT);
+        }
         
 	}
     void OnApplicationQuit()

@@ -7,7 +7,7 @@ public class RateUsController : MonoBehaviour
     public void rate(){
 
 
-      Application.OpenURL("https://play.google.com/store/apps/details?id=com.VertexStudio.MazeRunnerVillageEscape");
+      Application.OpenURL("https://vertexstudio.herokuapp.com/games/game?game=10");
       PlayerPrefs.SetInt("asked",1);
       gameObject.SetActive(false);
 

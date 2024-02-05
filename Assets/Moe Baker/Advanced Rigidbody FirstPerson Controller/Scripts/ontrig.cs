@@ -34,7 +34,7 @@ public class ontrig : MonoBehaviour {
     float damage = 50;
 
 #if UNITY_IOS
-    string gameId = "3507081";
+    string gameId = "3507083";
 #else
     string gameId = "3507082";
 #endif
@@ -43,6 +43,8 @@ public class ontrig : MonoBehaviour {
     public Text numOfPatrons;
 
     public AdmobController admob;
+
+    public QuestsPanelController quests;
 
     // Use this for initialization
     void Start () {
@@ -129,6 +131,7 @@ public class ontrig : MonoBehaviour {
             buttonSh.SetActive(true);
             gun.gameObject.SetActive(true);
             prutsil.gameObject.SetActive(true);
+            quests.CompleteQuest(MainQuests.FIND_WEAPON);
         }
         else{
             blasterGet.SetActive(true);
@@ -186,6 +189,8 @@ public class ontrig : MonoBehaviour {
     {
         if (other.name == "sweethome")
         {
+            quests.CompleteQuest(MainQuests.FIND_HOUSE);
+
             v=2;
             x = -29;
             y = 3;
@@ -214,6 +219,8 @@ public class ontrig : MonoBehaviour {
         }
         else if (other.name == "sweethome2")
         {
+            quests.CompleteQuest(MainQuests.FIND_HOUSE);
+
             v = 3;
             x = 85;
             y = 2;
@@ -251,10 +258,16 @@ public class ontrig : MonoBehaviour {
         }
         else if (other.tag == "food")
         {
+            quests.CompleteQuest(ExtraQuests.FIND_HEALTH_RESOURCES);
+
             PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 5);
             wellAudio.GetComponent<AudioSource>().Play();
             health.health1 += 15;
             Destroy(other.gameObject);
+        }
+        else if (other.tag == "MAZE_ENTRY")
+        {
+            quests.CompleteQuest(MainQuests.FIND_MAZE);
         }
         //else if (other.tag == "spider")
         //{
@@ -270,6 +283,8 @@ public class ontrig : MonoBehaviour {
         
         else if (other.tag == "lastroom")
         {
+            quests.CompleteQuest(MainQuests.FIND_EXIT_FROM_MAZE);
+
             if (cntEnter==0&&((PlayerPrefs.GetInt("Record") >  PlayerPrefs.GetInt("d"))|| PlayerPrefs.GetInt("Record")==0))
             {
                 PlayerPrefs.SetInt("Record", PlayerPrefs.GetInt("d"));
@@ -292,6 +307,8 @@ public class ontrig : MonoBehaviour {
         }
         else if (other.tag == "blaster")
         {
+            quests.CompleteQuest(MainQuests.FIND_WEAPON);
+
             PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 30);
             PlayerPrefs.SetInt("patron",PlayerPrefs.GetInt("patron")+10);
             wellAudio.GetComponent<AudioSource>().Play();
@@ -304,6 +321,8 @@ public class ontrig : MonoBehaviour {
         }
         else if (other.tag == "coin")
         {
+            quests.CompleteQuest(ExtraQuests.FIND_GOLD);
+
             PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 10);
             wellAudio.GetComponent<AudioSource>().Play();
             other.gameObject.SetActive(false);
@@ -312,6 +331,8 @@ public class ontrig : MonoBehaviour {
         }
         else if (other.tag == "coinlot")
         {
+            quests.CompleteQuest(ExtraQuests.FIND_GOLD);
+
             PlayerPrefs.SetInt("skill", PlayerPrefs.GetInt("skill") + 30);
             wellAudio.GetComponent<AudioSource>().Play();
             other.gameObject.SetActive(false);
@@ -361,7 +382,7 @@ public class ontrig : MonoBehaviour {
          //}else{
              if(PlayerPrefs.GetInt("noads")!=1){
                  if(!admob.showIntersitionalAd()){
-                     if(Advertisement.IsReady("video"))Advertisement.Show("video");
+                    Advertisement.Show("video");
                  }
              }
         //}
@@ -393,14 +414,6 @@ public class ontrig : MonoBehaviour {
     }
     public void m()
     {
-        
-
-        cnt++;
-        if (Advertisement.IsReady("baner") && cnt % 5 == 0)
-        {
-            if(PlayerPrefs.GetInt("noads")!=1)Advertisement.Show("baner");
-        }
-        
 
         Application.LoadLevel(0);
     }

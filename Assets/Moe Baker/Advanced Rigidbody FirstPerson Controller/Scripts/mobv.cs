@@ -34,7 +34,7 @@ public class mobv : MonoBehaviour
 
     public static bool runable=false;
 
-    string gameId = "3507082";
+    string gameId = "3507083";
 
     public Button btnRun;
 
@@ -204,7 +204,7 @@ public class mobv : MonoBehaviour
          //}else{
              if(PlayerPrefs.GetInt("noads")!=1){
                  if(!admob.showIntersitionalAd()){
-                     if(Advertisement.IsReady("video"))Advertisement.Show("video");
+                    Advertisement.Show("video");
                  }
              }
         //}
@@ -247,8 +247,11 @@ public class mobv : MonoBehaviour
         PlayerPrefs.SetInt("firstOpen", 1);
     }
 
+    public QuestsPanelController quests;
 
     public void runrun(){
         runable=!runable;
+
+        quests.CompleteQuest(BasicQuests.LEARN_TO_RUN);
     }
 }

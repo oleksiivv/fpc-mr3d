@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
 
     public GameObject fire;
 
+    public QuestsPanelController quests;
 
     void Start()
     {
@@ -69,6 +70,8 @@ public class Shoot : MonoBehaviour
             //pool.transform.Translate(-Vector3.forward * 3);
             //source.Play();
             PlayerPrefs.SetInt("patron", PlayerPrefs.GetInt("patron") - 1);
+
+            quests.CompleteQuest(BasicQuests.LEARN_TO_SHOOT);
         }
     }
 

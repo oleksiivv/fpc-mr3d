@@ -14,7 +14,7 @@ public class behSettings : MonoBehaviour
     public GameObject load;
 
 #if UNITY_IOS
-    string gameId = "3507081";
+    string gameId = "3507083";
 #else
     string gameId = "3507082";
 #endif
@@ -27,10 +27,8 @@ public class behSettings : MonoBehaviour
         Advertisement.Initialize(gameId, false);
         
         if(PlayerPrefs.GetInt("noads")!=1){
-            if(Advertisement.IsReady("video")){
+            if(! admob.showIntersitionalAd()){
                 Advertisement.Show("video");
-            }else{
-                admob.showIntersitionalAd();
             }
         }
 
