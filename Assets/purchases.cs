@@ -12,7 +12,12 @@ public class purchases : MonoBehaviour
     public GameObject map;
     public GameObject food_, barels;
     public Text money;
+
+#if UNITY_IOS
     string gameId = "3507083";
+#else
+    string gameId = "3507082";
+#endif
 
 
     int barelsNum = 40;

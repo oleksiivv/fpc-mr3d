@@ -34,7 +34,11 @@ public class mobv : MonoBehaviour
 
     public static bool runable=false;
 
+#if UNITY_IOS
     string gameId = "3507083";
+#else
+    string gameId = "3507082";
+#endif
 
     public Button btnRun;
 
